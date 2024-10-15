@@ -21,12 +21,12 @@ class RadioCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
                   Container(
-                    height: 100,
-                    width: 100,
+                    height: 200,
+                    width: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
