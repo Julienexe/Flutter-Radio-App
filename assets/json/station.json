@@ -9,49 +9,5 @@
         "listener" : "50 Listeners",
         "isPlay": false,
         "longDesc": "Record FM (sometimes called Record Radio or 97.7 Record FM) is an Urban Contemporary radio station in Kampala, Uganda.[1] Under the Brazilian free-to-air commercial television network; Record Network was established on September 27, 1953."
-    },
-    {
-        "number": "ALT 98.0",
-        "name": "Radio 1190",
-        "streamURL": "http://stream-uk1.radioparadise.com",
-        "imageURL": "https://cdn-images.audioaddict.com/4/1/0/3/1/9/410319c9dd368ba5d3d0aea255b543f2.png?size=300x300",
-        "desc": "KVCU - Boulder, CO",
-        "location" : "Alternative, New York",
-        "listener" : "150 Listener",
-        "isPlay": false,
-        "longDesc": "Radio 1190 is the bomb."
-    },
-    {
-        "number": "ALT 98.0",
-        "name": "Mehefil",
-        "streamURL": "http://mehefil.no-ip.com/mehefil",
-        "imageURL": "https://cdn-images.audioaddict.com/2/1/2/6/9/0/212690fe17ba9a8c7cfbf432d0eaac53.png?size=300x300",
-        "desc": "KVCU - Boulder, CO",
-        "location" : "Alternative, New York",
-        "listener" : "90 Listener",
-        "isPlay": false,
-        "longDesc": "Radio 1190 is the bomb."
-    },
-    {
-        "number": "ALT 98.0",
-        "name": "Radio Paradise",
-        "streamURL": "http://stream-uk1.radioparadise.com",
-        "imageURL": "https://cdn-images.audioaddict.com/c/d/1/1/e/9/cd11e96692b5a9480123ff96159b0f7c.png?size=300x300",
-        "desc": "KVCU - Boulder, CO",
-        "location" : "Alternative, New York",
-        "listener" : "105 Listener",
-        "isPlay": false,
-        "longDesc": "Radio 1190 is the bomb."
-    },
-    {
-        "number": "ALT 98.0",
-        "name": "Planet Rock",
-        "streamURL": "http://stream-uk1.radioparadise.com",
-        "imageURL": "https://cdn-images.audioaddict.com/3/2/9/d/b/c/329dbc2edc01d948f08f08b27e08dae9.jpg?size=300x300",
-        "desc": "KVCU - Boulder, CO",
-        "location" : "Alternative, New York",
-        "listener" : "110 Listener",
-        "isPlay": false,
-        "longDesc": "Radio 1190 is the bomb."
     }
 ]
