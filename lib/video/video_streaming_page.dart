@@ -22,7 +22,8 @@ class _VideoWebViewPageState extends State<VideoWebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('97.7 Record FM'),
+        backgroundColor: Color.fromARGB(255, 10, 19, 30),
+        title: Text('97.7 Record FM',style: TextStyle(color: Colors.white),),
       ),
       body: WebView(
         initialUrl: 'https://player.castr.com/live_34f30f70f4f611edab1809312648496c', // Replace with your video URL
