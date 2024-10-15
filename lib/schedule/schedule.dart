@@ -1,7 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart'; // For caching images
-
-//const Color bgcolor = Color.fromARGB(255, 10, 19, 30);
+import 'package:path_provider/path_provider.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -9,165 +9,132 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  int _selectedDayIndex = 1; // Default selected day index (Monday)
+  List<Map<String, dynamic>> _programs = [];
 
-  final List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  final List<String> dates = [
-    '13 Oct',
-    '14 Oct',
-    '15 Oct',
-    '16 Oct',
-    '17 Oct',
-    '18 Oct',
-    '19 Oct'
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadPrograms();
+  }
+
+  Future<void> _loadPrograms() async {
+    final file = await _getJsonFile();
+    if (await file.exists()) {
+      final content = await file.readAsString();
+      setState(() {
+        _programs = List<Map<String, dynamic>>.from(json.decode(content));
+      });
+    }
+  }
+
+  Future<File> _getJsonFile() async {
+    final directory = await getApplicationDocumentsDirectory();
+    return File('${directory.path}/radio_programs.json');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 10, 19, 30),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 10, 19, 30),
-        title: Text("Schedule",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 10, 19, 30),
+        title: Text('Schedule', style: TextStyle(color: Colors.white)),
       ),
       body: Column(
         children: [
-          _buildDaySelector(),
-          Expanded(child: _buildScheduleList()),
+          // Horizontal Days Selector (as seen in the screenshot)
+          Container(
+            height: 80,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildDayButton("Sun", "13 Oct", isSelected: false),
+                _buildDayButton("Mon", "14 Oct", isSelected: true),
+                _buildDayButton("Tue", "15 Oct", isSelected: false),
+                _buildDayButton("Wed", "16 Oct", isSelected: false),
+                _buildDayButton("Thu", "17 Oct", isSelected: false),
+                // Add more days here as needed
+              ],
+            ),
+          ),
+          // Programs List
+          Expanded(
+            child: ListView.builder(
+              itemCount: _programs.length,
+              itemBuilder: (context, index) {
+                final program = _programs[index];
+                return _buildProgramItem(
+                  program['name'],
+                  program['date'],
+                  program['time'],
+                  'Freedom On Air', // Placeholder subtitle
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildDaySelector() {
-    return Container(
-      height: 65,
-      color: const Color.fromARGB(255, 10, 19, 30),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: days.length,
-        itemBuilder: (context, index) {
-          bool isSelected = _selectedDayIndex == index;
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _selectedDayIndex = index;
-              });
-            },
-            child: Container(
-              height: 65,
-              width: 70,
-              margin: EdgeInsets.only(
-                  left: 8, right: index == days.length - 1 ? 8 : 0),
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.blue : Colors.grey[800],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    days[index],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    dates[index],
-                    style: TextStyle(color: Colors.white60, fontSize: 12),
-                  ),
-                ],
-              ),
+  Widget _buildDayButton(String day, String date, {required bool isSelected}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: [
+          Text(day, style: TextStyle(color: Colors.white)),
+          SizedBox(height: 4),
+          Container(
+            decoration: BoxDecoration(
+              color: isSelected ? Colors.blue : Colors.grey[800],
+              borderRadius: BorderRadius.circular(8),
             ),
-          );
-        },
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(date, style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildScheduleList() {
-    List<Map<String, String>> schedule = [
-      {
-        'title': 'Restoring Lives',
-        'image':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '1:00am - 2:00am',
-      },
-      {
-        'title': 'Turning Point',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '2:00am - 2:30am',
-      },
-      {
-        'title': 'Restart',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '2:30am - 3:00am',
-      },
-      {
-        'title': 'Overcoming Crisis',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '3:00am - 3:30am',
-      },
-      {
-        'title': 'Challenge of the Cross',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '3:30am - 4:00am',
-      },
-      {
-        'title': 'Spiritual Warfare',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s',
-        'time': '4:00am - 4:30am',
-      },
-    ];
-
-    return ListView.builder(
-      itemCount: schedule.length,
-      itemBuilder: (context, index) {
-        return SizedBox(
-          height:90,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildScheduleItem(schedule[index]),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildScheduleItem(Map<String, String> item) {
-    String imageUrl = item['image'] ?? 'https://example.com/image2.png';
-    return ListTile(
-      leading: imageUrl.isNotEmpty
-          ? CachedNetworkImage(
-            
-              fit: BoxFit.fill,
-              imageUrl: item['image']!,
-              width: 70,
-              height: 70,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            )
-          : Container(
-              width: 50,
-              height: 50,
-              color: Colors.grey[700],
-              child: Icon(Icons.image_not_supported, color: Colors.white),
+  Widget _buildProgramItem(String title, String date, String time, String subtitle) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Row(
+        children: [
+          // Placeholder Image
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.grey[300], // Placeholder color for images
+              borderRadius: BorderRadius.circular(8),
             ),
-      title: Text(item['title'] ?? '', style: TextStyle(color: Colors.white,fontSize: 20)),
-      subtitle:
-          Text(item['time'] ?? '', style: TextStyle(color: Colors.white60)),
-      onTap: () {
-        // Navigate to details or play the selected show
-      },
+            child: Icon(Icons.radio, size: 30, color: Colors.grey[600]),
+          ),
+          SizedBox(width: 16),
+          // Program Details
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "$time", // Display time like 1:00am - 2:00am
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  title, // Program title
+                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  subtitle, // Placeholder subtitle
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
