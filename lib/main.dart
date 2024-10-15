@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:radio_app/radio/radio_list.dart';
+import 'package:radio_app/home/home.dart';
+
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -15,9 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        
+        scaffoldBackgroundColor: bgcolor,
       ),
-      home: const RadioList()
+      home: HomePage(),
     );
   }
 }
+
+const bgcolor = Color.fromARGB(255, 10, 19, 30);

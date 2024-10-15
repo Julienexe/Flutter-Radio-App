@@ -1,14 +1,14 @@
 [
     {
         "number": "ALT 98.0",
-        "name": "Classic Rock",
-        "streamURL": "http://stream-uk1.radioparadise.com",
-        "imageURL": "https://cdn-images.audioaddict.com/e/8/b/6/f/5/e8b6f5258a60a9a11495ecbc1d1bc881.png?size=300x300",
-        "desc": "Classic Rock Hits",
-        "location" : "Alternative, New York",
-        "listener" : "50 Listener",
+        "name": "97.7 Record FM",
+        "streamURL": "https://eu1.reliastream.com/proxy/recordfm977?mp=/stream.mp3",
+        "imageURL": "https://recordradio.co.ug/wp-content/uploads/2022/08/Record-App-Logo-512.png",
+        "desc": "Tusabula Hits All Day",
+        "location" : "Kampala, Uganda",
+        "listener" : "50 Listeners",
         "isPlay": false,
-        "longDesc": "Classic rock is a radio format which developed from the album-oriented rock (AOR) format in the early 1980s. In the United States, the classic rock format features music ranging generally from the late 1960s to the late 1980s, primarily focusing on commercially successful hard rock popularized in the 1970s. The radio format became increasingly popular with the baby boomer demographic by the end of the 1990s."
+        "longDesc": "Record FM (sometimes called Record Radio or 97.7 Record FM) is an Urban Contemporary radio station in Kampala, Uganda.[1] Under the Brazilian free-to-air commercial television network; Record Network was established on September 27, 1953."
     },
     {
         "number": "ALT 98.0",

@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 class Player extends StatelessWidget {
   const Player({
     Key? key,
-    required this.percentageOpen, required this.title, required this.listener, required this.imageURL, required this. icon, required this.onTab, this.metadata,
+    required this.percentageOpen,
+    required this.title,
+    required this.listener,
+    required this.imageURL,
+    required this.icon,
+    required this.onTab,
+    this.metadata,
   }) : super(key: key);
 
   final double percentageOpen;
@@ -84,14 +90,16 @@ class Player extends StatelessWidget {
           ),
           Opacity(
             opacity: percentageOpen > 0.5
-              ? min(1, max(0, percentageOpen - 0.5) * 2)
-              : 0,
+                ? min(1, max(0, percentageOpen - 0.5) * 2)
+                : 0,
             child: Column(
               children: [
                 SizedBox(
                   height: imageHeight * 0.9,
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 35,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,7 +193,8 @@ class Player extends StatelessWidget {
                           color: Colors.grey[800],
                           shape: BoxShape.circle,
                         ),
-                        padding: const EdgeInsets.only(bottom: 16, left: 12, right: 26, top: 10),
+                        padding: const EdgeInsets.only(
+                            bottom: 16, left: 12, right: 26, top: 10),
                         child: IconButton(
                           onPressed: onTab,
                           icon: Icon(
@@ -214,13 +223,13 @@ class Player extends StatelessWidget {
           Container(
             height: imageHeight,
             padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16)
-            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
             child: Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-              child: Image.network(image.toString()),
+              child: Image.network(
+                image.toString(),
+              ),
             ),
           ),
         ],

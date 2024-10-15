@@ -136,15 +136,16 @@ class _RadioListState extends State<RadioList> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    const bgcolor =  Color.fromARGB(255, 10, 19, 30);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: bgcolor,
       body: ExpandableBottomSheet(
         background: CustomScrollView(
           controller: _controller,
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             const SliverAppBar(
-              backgroundColor: Colors.black,
+              backgroundColor: bgcolor,
               title: Text('Radio List', style: TextStyle(color: Colors.white)),
               primary: true,
               pinned: true,
@@ -153,7 +154,7 @@ class _RadioListState extends State<RadioList> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
-                child: Text('Recently played', style: theme.textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w600, color: Colors.white)),
+                child: Text('Now Playing', style: theme.textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w600, color: Colors.white)),
               ),
             ),
             SliverList(
