@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       
             ),
             SchedulePage(),
-            AdminContentUploadPage(),
+            AdminRadioProgramPage(),
             SettingsPage(),
           ],
         ),
