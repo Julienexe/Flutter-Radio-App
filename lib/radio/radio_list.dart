@@ -146,7 +146,7 @@ class _RadioListState extends State<RadioList> {
           slivers: <Widget>[
             const SliverAppBar(
               backgroundColor: bgcolor,
-              title: Text('Radio List', style: TextStyle(color: Colors.white)),
+              title: Text('Record FM', style: TextStyle(color: Colors.white)),
               primary: true,
               pinned: true,
               centerTitle: true,
